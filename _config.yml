@@ -11,7 +11,7 @@ title:            FLIMfit
 tagline:          'FLIM analysis'
 description:      'A state of the art open source FLIM analysis package'
 url:              http://flimfit.org
-baseurl:          /
+baseurl:          http://openmicroscopy.github.io/Imperial-FLIMfit/
 
 author:
   name:           'Sean Warren'
