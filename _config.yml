@@ -1,0 +1,32 @@
+# Dependencies
+gems:             [jekyll-paginate, jekyll-gist]
+markdown:         redcarpet
+highlighter:      rb-pygments
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            FLIMfit
+tagline:          'FLIM analysis'
+description:      'A state of the art open source FLIM analysis package'
+url:              http://flimfit.org
+baseurl:          /
+
+author:
+  name:           'Sean Warren'
+  url:            https://github.com/seanwarren
+
+paginate:         5
+paginate_path:    "/news/page:num/"
+
+# Custom vars
+version:          4.10.1
+
+links:
+   mailing-list:  http://lists.openmicroscopy.org.uk/mailman/listinfo/flimfit-users/
+   downloads:     http://downloads.openmicroscopy.org/latest/flimfit/
+   docs:          http://docs.flimfit.org/
+
+github:
+  repo:           https://github.com/openmicroscopy/Imperial-FLIMfit/
