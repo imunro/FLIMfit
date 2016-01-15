@@ -123,24 +123,21 @@ $(function() {
     var gcs_id, contents_url;
     $('#btn-fetch-file').attr('disabled', 'disabled');
     gcs_id = $.jstree._focused().get_selected().attr('gcs_id');
-    if (contents_xhr != null) {
-      contents_xhr.abort();
-    }
-    $('#file-contents').empty();
-    $('#file-contents').html('Loading...');
     contents_url = GCS_DOWNLOAD_URL + '/' + gcs_id;
-    contents_xhr = $.ajax({
-      url: contents_url,
-      dataType: 'text',
-      beforeSend: function(xhr) {
-        xhr.overrideMimeType('text/plain; charset=x-user-defined');
-      },
-      success: function(data, textStatus, xhr) {
-        $('#file-contents').text(data);
-      }
-    });
+    location.href = contents_url;  
   }
 
+  function getReadableFileSizeString(fileSizeInBytes) {
+     var i = -1;
+     var byteUnits = [' kb', ' Mb', ' Gb', ' Tb', 'Pb', 'Eb', 'Zb', 'Yb'];
+     do {
+        fileSizeInBytes = fileSizeInBytes / 1024;
+        i++;
+     } while (fileSizeInBytes > 1024);
+
+     return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
+  };    
+    
   /*
    * Given the JSON metadata response about an object in GCS, places a
    * description list into the file metadata box.
@@ -149,11 +146,11 @@ $(function() {
     var dlstr = '<dl  class="dl-horizontal">';
     dlstr += '<dt>Content-Type</dt><dd>' + data.contentType + '</dd>';
     dlstr += '<dt>Hash</dt><dd>MD5: ' + data.md5Hash + '</dd>';
-    dlstr += '<dt>Size</dt><dd>' + data.size + '</dd>';
+    dlstr += '<dt>Size</dt><dd>' + getReadableFileSizeString(data.size) + '</dd>';
     dlstr += '<dt>Created</dt><dd>' + data.timeCreated + '</dd>';
     dlstr += '</dl><br/>';
     dlstr += '<center><button id="btn-fetch-file" class="btn btn-primary">' +
-             'Fetch File</button></center>';
+             'Download</button></center>';
     $('#file-props').html(dlstr);
     $('#btn-fetch-file').bind('click', fetch_contents);
   }
