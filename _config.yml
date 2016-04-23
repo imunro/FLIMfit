@@ -1,5 +1,5 @@
 # Dependencies
-gems:             [jekyll-paginate, jekyll-gist]
+gems:             [jekyll-paginate, jekyll-gist, jekyll-redirect-from]
 markdown:         kramdown
 kramdown:
   input:          GFM
